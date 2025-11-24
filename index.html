@@ -446,30 +446,30 @@
       }, 100);
     });
 
+    
   const audio = document.getElementById("backsound");
-  audio.load(); // wajib untuk iOS
+  audio.load();
 
-  function enable() {
+  function enableSound() {
     audio.muted = false;
     audio.play().catch(() => {});
-    cleanup();
+
+    window.removeEventListener("touchstart", enableSound);
+    window.removeEventListener("pointerdown", enableSound);
+    window.removeEventListener("click", enableSound);
+    window.removeEventListener("scroll", enableSound);
   }
 
-  function cleanup() {
-    document.removeEventListener("touchstart", enable);
-    document.removeEventListener("pointerdown", enable);
-    document.removeEventListener("click", enable);
-  }
-
-  // gesture valid: iOS paling suka pointerdown & touchstart
-  document.addEventListener("touchstart", enable, {passive: true});
-  document.addEventListener("pointerdown", enable);
-  document.addEventListener("click", enable);
+  window.addEventListener("touchstart", enableSound, { passive: true }); // mobile utama
+  window.addEventListener("pointerdown", enableSound); // gesture paling reliable iOS
+  window.addEventListener("click", enableSound); // desktop
+  window.addEventListener("scroll", enableSound); // auto nyala saat user scrollocument.addEventListener("click", enable);
 </script>
 
 </body>
 
 </html>
+
 
 
 
