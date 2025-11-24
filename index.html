@@ -445,11 +445,23 @@
         }
       }, 100);
     });
+    
+  const audio = document.getElementById("backsound");
+    
+  function activateSound() {
+    audio.muted = false;
+    audio.play().catch(()=>{});
+    window.removeEventListener("scroll", activateSound);
+  }
+
+  // aktifkan suara saat user scroll sedikit saja
+  window.addEventListener("scroll", activateSound);
   </script>
 
 </body>
 
 </html>
+
 
 
 
