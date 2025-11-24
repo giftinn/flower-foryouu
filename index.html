@@ -447,25 +447,30 @@
     });
 
   const audio = document.getElementById("backsound");
+  audio.load(); // wajib untuk iOS
 
-  function activateSound() {
+  function enable() {
     audio.muted = false;
-    audio.play().catch(()=>{});
-    
-    document.removeEventListener("click", activateSound);
-    document.removeEventListener("touchstart", activateSound);
-    document.removeEventListener("pointerdown", activateSound);
+    audio.play().catch(() => {});
+    cleanup();
   }
 
-  document.addEventListener("click", activateSound);
+  function cleanup() {
+    document.removeEventListener("touchstart", enable);
+    document.removeEventListener("pointerdown", enable);
+    document.removeEventListener("click", enable);
+  }
 
-  document.addEventListener("touchstart", activateSound);
-  document.addEventListener("pointerdown", activateSound);
+  // gesture valid: iOS paling suka pointerdown & touchstart
+  document.addEventListener("touchstart", enable, {passive: true});
+  document.addEventListener("pointerdown", enable);
+  document.addEventListener("click", enable);
 </script>
 
 </body>
 
 </html>
+
 
 
 
