@@ -448,9 +448,12 @@
 
     
   const audio = document.getElementById("backsound");
+
+  // Pastikan audio siap
   audio.load();
 
   function enableSound() {
+    // Unmute dan play
     audio.muted = false;
     audio.play().catch(() => {});
 
@@ -460,15 +463,20 @@
     window.removeEventListener("scroll", enableSound);
   }
 
-  window.addEventListener("touchstart", enableSound, { passive: true }); // mobile utama
-  window.addEventListener("pointerdown", enableSound); // gesture paling reliable iOS
-  window.addEventListener("click", enableSound); // desktop
-  window.addEventListener("scroll", enableSound); // auto nyala saat user scrollocument.addEventListener("click", enable);
+  window.addEventListener("touchstart", enableSound, { passive: true });
+  window.addEventListener("pointerdown", enableSound);
+  window.addEventListener("click", enableSound);
+  window.addEventListener("scroll", enableSound);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    audio.play().catch(() => {});
+  });
 </script>
 
 </body>
 
 </html>
+
 
 
 
