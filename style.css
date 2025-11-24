@@ -10,6 +10,10 @@
   --dark-color: #010113;
 }
 
+audio {
+  display: none;
+}
+
 body {
   display: flex;
   align-items: flex-end;
@@ -1989,4 +1993,5 @@ body:not(.container) * {
     fill: #f0e68c;
     opacity: 1;
   }
+
 }
