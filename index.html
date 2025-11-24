@@ -448,21 +448,25 @@
 
   const audio = document.getElementById("backsound");
 
-  function enableSound() {
+  function activateSound() {
     audio.muted = false;
-    audio.play()
-      .catch(() => {});
-    document.removeEventListener("click", enableSound);
-    document.removeEventListener("touchstart", enableSound);
+    audio.play().catch(()=>{});
+    
+    document.removeEventListener("click", activateSound);
+    document.removeEventListener("touchstart", activateSound);
+    document.removeEventListener("pointerdown", activateSound);
   }
 
-  document.addEventListener("click", enableSound);
-  document.addEventListener("touchstart", enableSound);
+  document.addEventListener("click", activateSound);
+
+  document.addEventListener("touchstart", activateSound);
+  document.addEventListener("pointerdown", activateSound);
 </script>
 
 </body>
 
 </html>
+
 
 
 
