@@ -8,7 +8,7 @@
 
 <body>
 
- <audio id="backsound" src="https://files.catbox.moe/1ivn1u.mp3" autoplay loop muted></audio>
+ <audio id="backsound" src="song.mp3" loop playsinline preload="auto"></audio
   
 <div class="container">
   <div class="night"></div>
@@ -448,10 +448,8 @@
 
     
 const audio = document.getElementById("backsound");
-audio.muted = true; // Start muted
 
 function enableSound() {
-  audio.muted = false;
   audio.play().catch(() => {});
 }
 
@@ -462,6 +460,7 @@ document.addEventListener("touchstart", enableSound, { once: true });
 </body>
 
 </html>
+
 
 
 
